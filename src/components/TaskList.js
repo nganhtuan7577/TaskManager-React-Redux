@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import TaskItem from './TaskItem';
 import { connect } from 'react-redux';
 import * as actions from './../actions/index';
+import {Redirect} from 'react-router-dom';
+import axios from 'axios';
+import Cookies from 'universal-cookie';
+var cookies = new Cookies();
 
 class TaskList extends Component {
 
@@ -9,8 +13,34 @@ class TaskList extends Component {
         super(props);
         this.state = {
             filterName : '',
-            filterStatus : -1
+            filterStatus : -1,
+            tasks: []
         };
+    }
+
+    componentWillMount() {
+        axios({
+            method: 'GET',
+            url: 'http://localhost:9000/',
+            data: null,
+            headers: {'X-access-token': cookies.get('Token')}
+        }).catch(err => {
+            console.log(err);
+        }).then(res => {
+            if (res.data !== '') {
+                this.setState({tasks: res.data})
+                localStorage.setItem('tasks', JSON.stringify(res.data));
+            }
+            else {
+                this.setState({tasks: []});
+                localStorage.setItem('tasks', JSON.stringify(res.data));
+                console.log('Token is invalid or expired!');
+            }
+        });
+    }
+
+    componentWillReceiveProps(nextProps) {
+        this.setState({tasks: nextProps.tasks})
     }
 
     onChange = (event) => {
@@ -28,7 +58,8 @@ class TaskList extends Component {
     }
 
     render() {
-        var { tasks, filterTable, keyword, sort } = this.props;
+        var { filterTable, keyword, sort } = this.props;
+        var {tasks} = this.state;
         // filter on table
         if(filterTable.name){
             tasks = tasks.filter((task) => {
@@ -74,6 +105,10 @@ class TaskList extends Component {
                 />
             )
         });
+
+        if (this.state.isAuth === false) {
+            return <Redirect to='/login' />
+        }
 
         return (
             <div className="row mt-15">

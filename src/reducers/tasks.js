@@ -1,4 +1,7 @@
 import * as types from './../constants/ActionTypes';
+import axios from 'axios';
+import Cookies from 'universal-cookie';
+var cookies = new Cookies();
 
 var s4 = () => {
     return  Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
@@ -49,6 +52,16 @@ var myReducer = (state = initialState, action) =>{
                 status : !state[index].status
             };
             localStorage.setItem('tasks', JSON.stringify(state));
+            axios({
+                method: 'POST',
+                url: 'http://localhost:9000/',
+                headers: {'X-access-token': cookies.get('Token')},
+                data: {data: state}
+            }).catch(err => {
+                console.log(err);
+            }).then(res => {
+                console.log(res);
+            });
             return [...state];
         case types.DELETE_TASK:
             id = action.id;

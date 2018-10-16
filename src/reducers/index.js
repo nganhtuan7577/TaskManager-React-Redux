@@ -5,14 +5,16 @@ import itemEditing from './itemEditing';
 import filterTable from './filterTable';
 import search from './search';
 import sort from './sort';
+import logInOut from './logInOut';
 
 const myReducer = combineReducers({
-    tasks, // tasks : tasks,
-    isDisplayForm, // isDisplayForm : isDisplayForm
-    itemEditing, // itemEditing : itemEditing
+    tasks, 
+    isDisplayForm, 
+    itemEditing, 
     filterTable,
     search,
-    sort // sort : sort
+    sort, 
+    logInOut
 });
 
 export default myReducer;

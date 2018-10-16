@@ -4,6 +4,7 @@ import {NavLink, Route} from "react-router-dom";
 import Detail from './Detail';
 
 class Contact extends Component {
+
     render() {
         var contacts = [
             {
@@ -38,7 +39,7 @@ class Contact extends Component {
                 </NavLink>
             );
         })
-
+        
         return (
             <div className='text-center'>
                 <h1>
@@ -57,4 +58,10 @@ class Contact extends Component {
     }
 }
 
-export default connect()(Contact);
+const mapStateToProps = state => {
+    return {
+        isLogin: state.logInOut
+    }
+}
+
+export default connect(mapStateToProps, null)(Contact);

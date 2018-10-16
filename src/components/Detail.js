@@ -4,15 +4,14 @@ import {connect} from 'react-redux';
 class Detail extends Component {
     render() {
         var {match} = this.props;
-        console.log(match);
         var name = match.params.slug;
 
         return (
-            <div>
+            <React.Fragment>
                 <h1>
                     Contact Detail {name}
                 </h1>
-            </div>
+            </React.Fragment>
         );
     }
 }

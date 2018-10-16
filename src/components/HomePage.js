@@ -6,13 +6,13 @@ import { connect } from 'react-redux';
 import * as actions from '../actions/index';
 
 class App extends Component {
-
     // toggle redux
     onToggleForm = () => {
         var { itemEditing } = this.props;
         if(itemEditing && itemEditing.id !== ''){
             this.props.onOpenForm();
-        }else{
+        }
+        else{
             this.props.onToggleForm();
         }
         this.props.onClearTask({

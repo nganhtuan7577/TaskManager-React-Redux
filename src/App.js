@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 
 import routes from './routes';
 
+
 const MenuLink = ({label, to, activeOnlyWhenExact}) => {
     return (
         <Route  path={to}
@@ -21,6 +22,7 @@ const MenuLink = ({label, to, activeOnlyWhenExact}) => {
 }
   
 class App extends Component {
+
     showContentMenu = (routes) => {
         var result = null;
         if (routes.length > 0) {
@@ -39,7 +41,7 @@ class App extends Component {
     render() {
         return (
             <Router>
-                <div>
+                <React.Fragment>
                     <nav className="navbar navbar-inverse">
                         <div className="container-fluid">
                             <div className="navbar-header">
@@ -56,7 +58,7 @@ class App extends Component {
                     <Switch>
                         {this.showContentMenu(routes)}
                     </Switch>
-                </div>
+                </React.Fragment>
             </Router>
         )
     }
@@ -65,13 +67,13 @@ class App extends Component {
 
 const mapStateToProps = state => {
     return {
-       
+       isLogin: state.logInOut
     };
 };
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
-        
+
     };
 };
 

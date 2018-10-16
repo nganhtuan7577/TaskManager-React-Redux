@@ -9,3 +9,5 @@ export const EDIT_TASK = 'EDIT_TASK';
 export const FILTER_TABLE = 'FILTER_TABLE';
 export const SEARCH = 'SEARCH';
 export const SORT = 'SORT';
+export const LOGIN = 'LOGIN';
+export const LOGOUT = 'LOGOUT';

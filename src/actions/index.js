@@ -72,3 +72,15 @@ export const sortTask = (sort) => {
         sort // sort : sort -> sort.by sort.value
     }
 }
+
+export const logIn = () => {
+    return {
+        type: types.LOGIN
+    }
+}
+
+export const logOut = () => {
+    return {
+        type: types.LOGOUT
+    }
+}

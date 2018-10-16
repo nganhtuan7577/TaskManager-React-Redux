@@ -4,11 +4,11 @@ import {connect} from 'react-redux';
 class NotFound extends Component {
     render() {
         return (
-            <div>
+            <React.Fragment>
                 <h1>
                     Error 404 - Not Found!
                 </h1>
-            </div>
+            </React.Fragment>
         );
     }
 }
